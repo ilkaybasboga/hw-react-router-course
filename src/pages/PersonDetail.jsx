@@ -22,20 +22,22 @@ const PersonDetail = () => {
     fetch(`https://reqres.in/api/users/${id}`)
       .then((res) => {
         if (!res.ok) {
-          setError(true);
-          setLoading(false);
-          throw new Error("xxxxxxx");
+          setError(true)
+          setLoading(false)
+          throw new Error("User can not be found")
         }
-        return res.json();
+        return res.json()
       })
-      .then((data) =>{
+      .then((data) => {
         setLoading(false)
-        setPerson(data.data)})
-      .catch((err) => console.log(err));
-  };
+        setPerson(data.data)
+      })
+      .catch((err) => console.log(err))
+  }
   useEffect(() => {
-    getPerson();
-  }, []);
+    getPerson()
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  },[])
 
   if (error) {
     return <NotFound />;
